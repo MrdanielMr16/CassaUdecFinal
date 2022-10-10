@@ -9,6 +9,7 @@
 				<th scope="col">Pais</th>
 				<th scope="col">Ciudad</th>
 				<th scope="col">Email</th>
+				<th scope="col">Rol</th>
 				<th scope="col">Acciones</th>
 			</tr>
 		</thead>
@@ -21,6 +22,7 @@
 				<td th:text="${Usuario.Pais}"></td>
 				<td th:text="${Usuario.ciudad}"></td>
 				<td th:text="${Usuario.email}"></td>
+				<td th:text="${Usuario.roles}"></td>
 				<td>
 					<span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==Usuario.username})">
 						<a href="#" th:href="@{'/editarUsuario/'+ ${Usuario.id}}"><i class="fas fa-edit"></i></a>
@@ -29,6 +31,7 @@
 					| <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${Usuario.id} +'\');'"><i class="fas fa-user-times"></i></a>
 					</span>
 				</td>
+				
 			</tr>
 		</tbody>
 	</table>

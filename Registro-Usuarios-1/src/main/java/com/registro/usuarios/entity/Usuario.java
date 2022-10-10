@@ -51,6 +51,8 @@ public class Usuario implements Serializable {
 	@Column
 	@NotBlank
 	private String username;
+	
+	private boolean avisoPrivacidad;
 	@Column
 	@NotBlank
 	private String password;
@@ -63,7 +65,13 @@ public class Usuario implements Serializable {
 			inverseJoinColumns = @JoinColumn(name="Rol_id"))
 	private Set<Rol> roles;
 	
-	
+	public boolean isAvisoPrivacidad() {
+		return avisoPrivacidad;
+	}
+
+	public void setAvisoPrivacidad(boolean avisoPrivacidad) {
+		this.avisoPrivacidad = avisoPrivacidad;
+	}
 
 	public long getId() {
 		return id;
@@ -148,7 +156,7 @@ public class Usuario implements Serializable {
 	public Usuario(long id,
 			@NotBlank @Size(min = 5, max = 20, message = "No se cumplen las reglas del tamaño") String nombre,
 			@NotBlank String apellido, @NotBlank String pais, @NotBlank String ciudad, @NotBlank String email,
-			@NotBlank String username, @NotBlank String password, @NotBlank String confirmPassword, Set<Rol> roles) {
+			@NotBlank String username, @NotBlank String password, @NotBlank String confirmPassword, Set<Rol> roles,boolean avisoPrivacidad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -160,6 +168,7 @@ public class Usuario implements Serializable {
 		this.password = password;
 		this.confirmPassword = confirmPassword;
 		this.roles = roles;
+		this.avisoPrivacidad = avisoPrivacidad;
 	}
 
 	public Usuario(long id) {
@@ -175,12 +184,12 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", Pais=" + Pais + ", ciudad="
 				+ ciudad + ", email=" + email + ", username=" + username + ", password=" + password
-				+ ", confirmPassword=" + confirmPassword + ", roles=" + roles + "]";
+				+ ", confirmPassword=" + confirmPassword + ", roles=" + roles + ",avisoPrivacidad=" + avisoPrivacidad +"]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Pais, apellido, ciudad, confirmPassword, email, id, nombre, password, roles, username);
+		return Objects.hash(Pais, apellido, ciudad, confirmPassword, email, id, nombre, password, roles, username, avisoPrivacidad);
 	}
 
 	@Override
@@ -196,7 +205,7 @@ public class Usuario implements Serializable {
 				&& Objects.equals(ciudad, other.ciudad) && Objects.equals(confirmPassword, other.confirmPassword)
 				&& Objects.equals(email, other.email) && id == other.id && Objects.equals(nombre, other.nombre)
 				&& Objects.equals(password, other.password) && Objects.equals(roles, other.roles)
-				&& Objects.equals(username, other.username);
+				&& Objects.equals(username, other.username) && Objects.equals(avisoPrivacidad, other.avisoPrivacidad);
 	}
 	
 	

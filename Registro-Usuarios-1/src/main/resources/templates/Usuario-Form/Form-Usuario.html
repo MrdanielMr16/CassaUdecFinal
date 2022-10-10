@@ -1,84 +1,207 @@
-<div th:with="disableFields=!${editMode} and ${#authorization.expression('hasRole(''USER'')')}">
+<div
+	th:with="disableFields=!${editMode} and ${#authorization.expression('hasRole(''USER'')')}">
 
-<form class="form" role="form" autocomplete="off" th:object="${FormularioUsuarios}" th:action="${signup} ?@{/signup} :(${editMode} ?@{/editarUsuario} :@{/FormUsuario})" method="post">
-	<input class="form-control" type=hidden th:field="${FormularioUsuarios.id}" th:if="${editMode}">
-	<input class="form-control" type=hidden name="password" value="xxxx"  th:if="${editMode}">
-	
-	<div class="form-group row">
-		<label class="col-lg-3 col-form-label form-control-label">Nombre:</label>
-		<div class="col-lg-9">
-			<input class="form-control" type="text" th:field="${FormularioUsuarios.nombre}" th:disabled="${disableFields}">
-			<div class="alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre Error</div>
+	<form class="form" role="form" autocomplete="off"
+		th:object="${FormularioUsuarios}"
+		th:action="${signup} ?@{/signup} :(${editMode} ?@{/editarUsuario} :@{/FormUsuario})"
+		method="post">
+		<input class="form-control" type=hidden
+			th:field="${FormularioUsuarios.id}" th:if="${editMode}"> <input
+			class="form-control" type=hidden name="password" value="xxxx"
+			th:if="${editMode}">
+
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label form-control-label">Nombre:</label>
+			<div class="col-lg-9">
+				<input class="form-control" type="text"
+					th:field="${FormularioUsuarios.nombre}"
+					th:disabled="${disableFields}">
+				<div class="alert-danger" th:if="${#fields.hasErrors('nombre')}"
+					th:errors="*{nombre}">Nombre Error</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-lg-3 col-form-label form-control-label">Apellidos:</label>
-		<div class="col-lg-9">
-			<input class="form-control" type="text" th:field="${FormularioUsuarios.apellido}" th:disabled="${disableFields}">
-			<div class="alert-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Apellido Error</div>
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label form-control-label">Apellidos:</label>
+			<div class="col-lg-9">
+				<input class="form-control" type="text"
+					th:field="${FormularioUsuarios.apellido}"
+					th:disabled="${disableFields}">
+				<div class="alert-danger" th:if="${#fields.hasErrors('apellido')}"
+					th:errors="*{apellido}">Apellido Error</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-lg-3 col-form-label form-control-label">Usuario:</label>
-		<div class="col-lg-9">
-			<input class="form-control" type="text" th:field="${FormularioUsuarios.username}" th:disabled="${disableFields}">
-			<div class="alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Usuario Error</div>
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label form-control-label">Usuario:</label>
+			<div class="col-lg-9">
+				<input class="form-control" type="text"
+					th:field="${FormularioUsuarios.username}"
+					th:disabled="${disableFields}">
+				<div class="alert-danger" th:if="${#fields.hasErrors('username')}"
+					th:errors="*{username}">Usuario Error</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-lg-3 col-form-label form-control-label">Email:</label>
-		<div class="col-lg-9">
-			<input class="form-control" type="email" th:field="${FormularioUsuarios.email}" th:disabled="${disableFields}">
-			<div class="alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label form-control-label">Email:</label>
+			<div class="col-lg-9">
+				<input class="form-control" type="email"
+					th:field="${FormularioUsuarios.email}"
+					th:disabled="${disableFields}">
+				<div class="alert-danger" th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}">Email Error</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-lg-3 col-form-label form-control-label">Pais:</label>
-		<div class="col-lg-9">
-			<input class="form-control" type="text" th:field="${FormularioUsuarios.Pais}" th:disabled="${disableFields}">
-			<div class="alert-danger" th:if="${#fields.hasErrors('Pais')}" th:errors="*{Pais}">Pais Error</div>
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label form-control-label">Pais:</label>
+			<div class="col-lg-9">
+				<input class="form-control" type="text"
+					th:field="${FormularioUsuarios.Pais}"
+					th:disabled="${disableFields}">
+				<div class="alert-danger" th:if="${#fields.hasErrors('Pais')}"
+					th:errors="*{Pais}">Pais Error</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-lg-3 col-form-label form-control-label">Ciudad:</label>
-		<div class="col-lg-9">
-			<input class="form-control" type="text" th:field="${FormularioUsuarios.ciudad}" th:disabled="${disableFields}"> 
-			<div class="alert-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}">Name Error</div>
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label form-control-label">Ciudad:</label>
+			<div class="col-lg-9">
+				<input class="form-control" type="text"
+					th:field="${FormularioUsuarios.ciudad}"
+					th:disabled="${disableFields}">
+				<div class="alert-danger" th:if="${#fields.hasErrors('ciudad')}"
+					th:errors="*{ciudad}">Name Error</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label th:text="Roles"
-			class="col-lg-3 col-form-label form-control-label"></label>
-		<div class="col-lg-9">
-			<select  class="form-control" th:size="${signup}?1:2" th:field="${FormularioUsuarios.roles}" th:disabled="${disableFields}" >
-				<option th:each="Rol :${roles}" th:value="${Rol.id}" 
-					th:text="${Rol.nombre}"></option>
-			</select>
-			<div class="alert-danger" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}">Name Error</div>
+		<div class="form-group row">
+			<label th:text="Roles"
+				class="col-lg-3 col-form-label form-control-label"></label>
+			<div class="col-lg-9">
+				<select class="form-control" th:size="${signup}?1:2"
+					th:field="${FormularioUsuarios.roles}"
+					th:disabled="${disableFields}">
+					<option th:each="Rol :${roles}" th:value="${Rol.id}"
+						th:text="${Rol.nombre}"></option>
+				</select>
+				<div class="alert-danger" th:if="${#fields.hasErrors('roles')}"
+					th:errors="*{roles}">Name Error</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row" th:if="${editMode==null or editMode==false}">
-		<label class="col-lg-3 col-form-label form-control-label" >Contrasena:</label>
-		<div class="col-lg-9">
-			<input class="form-control" type="password" th:field="${FormularioUsuarios.password}" th:disabled="${disableFields}">
-			<div class="alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
+		<div class="form-group row"
+			th:if="${editMode==null or editMode==false}">
+			<p>Click en el ojo para mostrar / ocultar</p>
+			<label class="col-lg-3 col-form-label form-control-label">Ingrese
+				Contraseña</label>
+			<div class="input-group">
+				<input id="txtPassword" class="form-control" type="password"
+					th:field="${FormularioUsuarios.password}"
+					th:disabled="${disableFields}">
+				<div class="alert-danger" th:if="${#fields.hasErrors('password')}"
+					th:errors="*{password}">Name Error</div>
+				<div class="input-group-append">
+					<button id="show_password" class="btn btn-primary" type="button"
+						onclick="mostrarPassword()">
+						<span class="fa fa-eye-slash icon"></span>
+					</button>
+				</div>
+
+			</div>
 		</div>
-	</div>
-	<div class="form-group row" th:if="${editMode==null or editMode==false}">
-		<label class="col-lg-3 col-form-label form-control-label">Confirmar contrasena:</label>
-		<div class="col-lg-9">
-			<input class="form-control" type="password" th:field="${FormularioUsuarios.confirmPassword}" th:disabled="${disableFields}">
-			<div class="alert-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Name Error</div>
+		<div class="form-group row"
+			th:if="${editMode==null or editMode==false}">
+			<label class="col-lg-3 col-form-label form-control-label">Confirmar
+				contraseña:</label>
+			<div class="input-group">
+				<input ID="txtconfirmPassword" class="form-control" type="password"
+					th:field="${FormularioUsuarios.confirmPassword}"
+					th:disabled="${disableFields}">
+				<div class="alert-danger"
+					th:if="${#fields.hasErrors('confirmPassword')}"
+					th:errors="*{confirmPassword}">Name Error</div>
+				<div class="input-group-append">
+					<button id="show_password2" class="btn btn-primary" type="button"
+						onclick="mostrarPassword2()">
+						<span class="fa fa-eye-slash icon"></span>
+					</button>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="form-group row">
-		<div class="col-lg-12 text-center">
-			<a class="btn btn-secondary" th:href="@{'/FormUsuario/cancel'}" >Cancelar</a>
-			<button type="button" class="btn btn-secondary" data-toggle="modal" th:if="${editMode}" data-target="#changePasswordModal">Cambiar contrase�a</button>
-			<input type="submit" class="btn btn-success" value="Save Changes" th:value="${editMode}?'Guardar Usuario':'Registrarse'">
+		<div class="col-md-4 mt-3">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+				data-bs-target="#staticBackdrop">Aviso de Privacidad</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+				data-bs-keyboard="false" tabindex="-1"
+				aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">Aviso de
+								Privacidad</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<p>La Universidad de Cundinamarca, de conformidad con lo
+								dispuesto en la Ley 1581 de 2012 y su Decreto Reglamentario 1074
+								de 2015, comunica que, en desarrollo de sus actividades
+								académicas, comerciales o laborales, solicita y recolecta
+								Información y datos personales de los Titulares que de manera
+								permanente o temporal acceden o buscan acceder a los servicios
+								prestados por la Institución, y que serán tratados según las
+								finalidades descritas en el documento ESG-SSI-M001 - MANUAL DE
+								POLÍTICAS DE SEGURIDAD Y PRIVACIDAD DE LA INFORMACIÓN.
+							<p>
+								Dicha información reposa en nuestras bases de datos y sobre la
+								misma puede ejercer sus derechos de acceso, actualización,
+								rectificación y supresión de conformidad con nuestra Política
+								Institucional de Tratamiento de Datos Personales disponible
+								aquí: <a
+									href="https://www.ucundinamarca.edu.co/index.php/proteccion-de-datos-personales"
+									style="color: #007b3e">www.ucundinamarca.edu.co/index.php/proteccion-de-datos-personales.</a>
+							<p>
+								El tratamiento de datos de menores responde y respeta el interés
+								superior de estos, así como asegura el respeto por sus derechos
+								fundamentales. Igualmente, la Universidad de Cundinamarca
+								informa que el tratamiento de los datos sensibles registrados en
+								el instrumento en mención, se realizará bajo estrictos
+								estándares de seguridad y confidencialidad, implementando
+								medidas administrativas, técnicas y jurídicas, de obligatorio
+								cumplimiento para los funcionarios administrativos, docentes y
+								terceros involucrados en la actividad, considerando en todo
+								momento que el Titular tiene la libre facultad de no autorizar
+								el tratamiento de sus datos sensibles. Para ejercer sus derechos
+								ante el responsable del tratamiento de la información personal,
+								es decir, la Universidad de Cundinamarca, puede dirigirse a sus
+								instalaciones a la Oficina de Atención al Ciudadano o
+								comunicarse con nosotros a través del correo <strong
+									style="color: #007b3e">protecciondedatos@ucundinamarca.edu.co</strong>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">Cerrar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="checkbox" name="avisoPrivacidad"
+				class="form-check-input" onChange="cambiarCondiciones()"
+				id="avisoPrivacidad" th:field="*{avisoPrivacidad}">
 		</div>
-	</div>
-	<div class="alert alert-danger text-center" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
-	<div class="alert alert-success text-center d-none" id="formSuccess" th:if="${editMode}" >Success Message</div>
-</form>
+		<div class="form-group row">
+			<div class="col-lg-12 text-center">
+				<a class="btn btn-secondary" th:href="@{'/FormUsuario/cancel'}">Cancelar</a>
+				<button type="button" class="btn btn-secondary" data-toggle="modal"
+					th:if="${editMode}" data-target="#changePasswordModal">Cambiar
+					contraseña</button>
+				<input type="submit" class="btn btn-success" id="enviar"
+					value="Save Changes"
+					th:value="${editMode}?'Guardar Usuario':'Registrarse'" disabled>
+			</div>
+		</div>
+		<div class="alert alert-danger text-center"
+			th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error
+			Message</div>
+		<div class="alert alert-success text-center d-none" id="formSuccess"
+			th:if="${editMode}">Success Message</div>
+	</form>
 </div>

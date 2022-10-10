@@ -57,6 +57,9 @@ public class UsuarioController {
          }
          else if(roles.contains("USER")) {
              response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/indexUser"));
+             
+         } else if(roles.contains("INACTIVO")){
+        	 response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/"));
          }
     }
 	
@@ -68,6 +71,11 @@ public class UsuarioController {
 	@GetMapping("/indexUser")
 	public String PaginaUsuario() {
 		return "User/indexUser";
+	}
+
+	@GetMapping("User/ListarForosUser")
+	public String PaginaDeForos() {
+		return "User/ListarForosUser";
 	}
 	
 	@GetMapping("User/ListarCartillasUser")
@@ -144,6 +152,8 @@ public class UsuarioController {
 		Rol UsuarioRol = repository.findByNombre("USER");
 		List<Rol> roles = Arrays.asList(UsuarioRol);
 		model.addAttribute("FormularioUsuarios", new Usuario());
+		boolean avisoPrivacidad = false;
+	    model.addAttribute("avisoPrivacidad", avisoPrivacidad);
 		model.addAttribute("roles",roles);
 		model.addAttribute("signup",true);
 		return "Usuario-Form/user-signup";
@@ -154,6 +164,8 @@ public class UsuarioController {
 		Rol UsuarioRol = repository.findByNombre("USER");
 		List<Rol> roles = Arrays.asList(UsuarioRol);
 		model.addAttribute("FormularioUsuarios", usuario);
+		boolean avisoPrivacidad = false;
+	    model.addAttribute("avisoPrivacidad", avisoPrivacidad);
 		model.addAttribute("roles",roles);
 		model.addAttribute("signup",true);
 		

@@ -81,17 +81,9 @@
 								<i class="icon ion-md-bookmarks"></i> <span
 								class="ms-1 d-none d-sm-inline">Crear Cartillas</span>
 						</a></li>
-						<li><a href="#" th:href="@{/Chat}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-chatboxes mr-2"></i> <span
-								class="ms-1 d-none d-sm-inline">Chat</span>
-						</a></li>
 						<li><a href="#" th:href="@{/Admin/Eventos}" class="d-block text-success p-3 border-0">
 								<i class="icon ion-md-calendar mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Eventos</span>
-						</a></li>
-						<li><a href="#"  class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-paper"></i> <span
-								class="ms-1 d-none d-sm-inline">Foro</span>
 						</a></li>
 					</ul>
 				</div>
@@ -105,16 +97,18 @@
 									class="col-form-label">Nombre de la cartilla: </label> <input
 									type="text" class="form-control" id="nombre_Cartilla"
 									placeholder="Nombre de la cartilla" th:field="*{nombre_Cartilla}">
+									<div class="alert-danger" th:if="${#fields.hasErrors('nombre_Cartilla')}" th:errors="*{nombre_Cartilla}"></div>
 							</div>
 							<div class="col-6">
 								<label for="Descripcion" class="col-form-label">Descripcion
 									de la cartilla:</label> <input type="text" class="form-control"
 									id="descripcion" placeholder="Descripcion de la cartilla"
 									th:field="*{descripcion}">
+									<div class="alert-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
 							</div>
 							<div class="col-7">
 								<label for="Archivo" class="col-form-label">Subir archivo:</label>
-								<input type="file" name="cartillas" class="form-control" required accept=".pdf">
+								<input type="file" name="cartillas" class="form-control" accept=".pdf">
 							</div>
 						</div>
 					

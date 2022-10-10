@@ -31,9 +31,10 @@ public class Eventos {
 	@NotEmpty
 	private String descripcion_evento;
 	
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "fecha_evento")
+	@Column(name = "fecha_evento", nullable = false)
 	private Date fecha;
 	
 	@NotEmpty

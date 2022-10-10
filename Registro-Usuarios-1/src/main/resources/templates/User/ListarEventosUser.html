@@ -51,8 +51,9 @@
 			<ul class="nav nav-tabs justify-content-end">
 				<li class="nav-item"><a class="nav-link text-success" href="#"
 					th:href="@{/logout}"><span
-						th:text="${#authentication.getPrincipal().getUsername()}" class="text-success"></span>
-						- <span class="text-success">Cerrar Sesion </span><span class="float-right"><i
+						th:text="${#authentication.getPrincipal().getUsername()}"
+						class="text-success"></span> - <span class="text-success">Cerrar
+							Sesion </span><span class="float-right"><i
 							class="fas fa-sign-out-alt"></i></span> </a></li>
 			</ul>
 		</nav>
@@ -60,53 +61,50 @@
 	<div class="container-fluid">
 		<div class="row flex-nowrap">
 			<div class="col-auto col-md-2 col-xl-2 px-sm-0 px-0 bg-light">
-				<div
-					class="flex-column align-items-center px-0 pt-0 text-white">
+				<div class="flex-column align-items-center px-0 pt-0 text-white">
 					<ul
 						class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
 						id="menu">
-						<li class="nav-item"><a href="#" th:href="@{/indexUser}" 
+						<li class="nav-item"><a href="#" th:href="@{/indexUser}"
 							class="d-block text-success p-3 border-0 "> <i
 								class="icon ion-md-home mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Inicio</span>
 						</a></li>
-						<li><a href="#" th:href="@{/ListarCartillasUser}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-book"></i> <span
+						<li><a href="#" th:href="@{/ListarCartillasUser}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-book"></i> <span
 								class="ms-1 d-none d-sm-inline">Cartillas</span>
 						</a></li>
-						<li><a href="#" th:href="@{/Actividades}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-football"></i> <span
+						<li><a href="#" th:href="@{/Actividades}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-football"></i> <span
 								class="ms-1 d-none d-sm-inline">Actividades</span>
 						</a></li>
-						<li><a href="#" th:href="@{/ChatUser}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-chatboxes mr-2"></i> <span
-								class="ms-1 d-none d-sm-inline">Chat</span>
-						</a></li>
-						<li><a href="#" th:href="@{/Noticias}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-help"></i><span
+						<li><a href="#" th:href="@{/Noticias}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-help"></i><span
 								class="ms-1 d-none d-sm-inline">Noticias</span>
 						</a></li>
-						<li><a href="#" th:href="@{/ListarEventosUser}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-calendar mr-2"></i> <span
+						<li><a href="#" th:href="@{/ListarEventosUser}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-calendar mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Eventos</span>
 						</a></li>
-						<li><a href="#" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-filing mr-2"></i> <span
-								class="ms-1 d-none d-sm-inline">Foros</span>
-						</a></li>
-						<li><a href="#" th:href="@{/Multimedia}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-play"></i> <span
+						<li><a href="#" th:href="@{/Multimedia}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-play"></i> <span
 								class="ms-1 d-none d-sm-inline">Multimedia</span>
 						</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-sm-10 row mx-auto">
-				<h1 class="text-center text-success fw-bold p-2">Lista de Eventos</h1>
+				<h1 class="text-center text-success fw-bold p-2">Lista de
+					Eventos</h1>
 				<div class="row">
 					<div class="col-sm-3" th:each="Eventos : ${eventos}">
 						<div class="container text-center">
-							<div class="card mb-3 h-100"  style="width: 20rem;">
+							<div class="card mb-3 h-100" style="width: 20rem;">
 								<img th:src="@{'/Prueba1/' + ${Eventos.imagen}}"
 									class="card-img-top" th:alt="${Eventos.imagen}">
 								<div class="card-body">
@@ -127,9 +125,23 @@
 
 		</div>
 	</div>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="js/funciones2.js"></script>
+	<!--Start of Tawk.to Script-->
+	<script type="text/javascript">
+		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+		(function() {
+			var s1 = document.createElement("script"), s0 = document
+					.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/6341da5154f06e12d89920ab/1gesjpk4o';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
+	</script>
+	<!--End of Tawk.to Script-->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="js/funciones2.js"></script>
 </body>
 
 </html>

@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -14,6 +15,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +46,10 @@ public class CartillasController {
 	}
 	
 	@PostMapping("/guardarCartillas")
-	public String GuardarCartillas(Cartillas cartillas, @RequestParam("cartillas") MultipartFile file,RedirectAttributes attributes) throws IOException {
+	public String GuardarCartillas(@Valid Cartillas cartillas,BindingResult bindingResult, @RequestParam("cartillas") MultipartFile file,RedirectAttributes attributes) throws IOException {
+		
+		
+		
 		String ArchivoNombre = StringUtils.cleanPath(file.getOriginalFilename());
 		cartillas.setNombre_archivo(ArchivoNombre);
 		cartillas.setContenido(file.getBytes());
@@ -54,6 +59,10 @@ public class CartillasController {
 		cartillasService.save(cartillas);
 
 		attributes.addFlashAttribute("message", "El archivo se ha subido correctamente");
+		
+		if(bindingResult.hasErrors()){
+			return "Admin/Cartillas";
+		}
 		return "redirect:/ListarCartillas";
 	}
 	
@@ -90,6 +99,13 @@ public class CartillasController {
 		List<Cartillas>cartillas= cartillasInterfaceServicio.Listar();
 		model.addAttribute("cartillas", cartillas);
 		return "Admin/ListarCartillas";
+	}
+	
+	@GetMapping("/editarCartillas/{id}")
+	public String editar(@PathVariable Long id, Model model) {
+		Optional<Cartillas>cartillas=cartillasInterfaceServicio.ListarId(id);
+		model.addAttribute("cartillas", cartillas);
+		return "Admin/Cartillas";
 	}
 	
 	@GetMapping("/eliminarCartillas/{id}")

@@ -40,7 +40,7 @@
 <body>
 	<div class="contenedor">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<img src="static/img/Logoudec.png" th:src="@{img/Logoudec.png}"
+			<img src="static/img/Logoudec.png" th:src="@{/img/Logoudec.png}"
 				width="150" alt="">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			</div>
@@ -52,8 +52,9 @@
 			<ul class="nav nav-tabs justify-content-end">
 				<li class="nav-item"><a class="nav-link text-success" href="#"
 					th:href="@{/logout}"><span
-						th:text="${#authentication.getPrincipal().getUsername()}" class="text-success"></span>
-						- <span class="text-success">Cerrar Sesion </span><span class="float-right"><i
+						th:text="${#authentication.getPrincipal().getUsername()}"
+						class="text-success"></span> - <span class="text-success">Cerrar
+							Sesion </span><span class="float-right"><i
 							class="fas fa-sign-out-alt"></i></span> </a></li>
 			</ul>
 		</nav>
@@ -61,8 +62,7 @@
 	<div class="container-fluid">
 		<div class="row flex-nowrap">
 			<div class="col-auto col-md-2 col-xl-2 px-sm-0 px-0 bg-light">
-				<div
-					class="flex-column align-items-center px-0 pt-0 text-white ">
+				<div class="flex-column align-items-center px-0 pt-0 text-white ">
 					<ul
 						class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start "
 						id="menu">
@@ -71,102 +71,112 @@
 								class="icon ion-md-home mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Inicio</span>
 						</a></li>
-						<li><a href="#" th:href="@{/RPacientes}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-person mr-2"></i> <span
+						<li><a href="#" th:href="@{/RPacientes}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-person mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Valoracion Pacientes</span>
 						</a></li>
-						<li><a href="#" th:href="@{/ListarPacientes}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-list mr-2"></i> <span
+						<li><a href="#" th:href="@{/ListarPacientes}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-list mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Lista de Pacientes</span>
 						</a></li>
-						<li><a href="#" th:href="@{/Admin/Cartillas}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-bookmarks"></i> <span
+						<li><a href="#" th:href="@{/Admin/Cartillas}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-bookmarks"></i> <span
 								class="ms-1 d-none d-sm-inline">Crear Cartillas</span>
 						</a></li>
-						<li><a href="#" th:href="@{/Chat}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-chatboxes mr-2"></i> <span
-								class="ms-1 d-none d-sm-inline">Chat</span>
-						</a></li>
-						<li><a href="#" th:href="@{/Admin/Eventos}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-calendar mr-2"></i> <span
+						<li><a href="#" th:href="@{/Admin/Eventos}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-calendar mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Eventos</span>
-						</a></li>
-						<li><a href="#"  class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-paper"></i> <span
-								class="ms-1 d-none d-sm-inline">Foro</span>
 						</a></li>
 					</ul>
 				</div>
 			</div>
-			<form th:action="@{/guardar}" th:object=${paciente} method="post"
+
+			<form th:action="@{/guardar}" th:object=${pacientes} method="post"
 				class="col-sm-8 row mx-auto ">
-				<p class="text-success text-center fs-1 fw-bold">Valoracion de Pacientes</p>
-				
+				<p class="text-success text-center fs-1 fw-bold">Valoracion de
+					Pacientes</p>
+
 				<div class="col-md-6">
-					<label for="fechaValoracion" class="col-form-label">Fecha de la valoracion:</label> <input
-						type="datetime-local" class="form-control" id="fechaValoracion"
-						placeholder="Fecha de la valoracion" th:field="*{fecha_valoracion}">
+					<label for="fecha_valoracion" class="col-form-label">Fecha
+						de la valoracion:</label> <input type="datetime-local"
+						class="form-control" id="fechaValoracion"
+						placeholder="Fecha de la valoracion"
+						th:field="*{fecha_valoracion}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('fecha_valoracion')}" th:errors="*{fecha_valoracion}"></div>
 				</div>
-				
+
 				<div class="col-md-6">
 					<input type="hidden" th:field="*{id}"> <label for="Cedula"
 						class="col-form-label">Cedula:</label> <input type="text"
 						class="form-control" id="Cedula" placeholder="Cedula"
 						th:field="*{cedula}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></div>
 				</div>
-				
+
 				<div class="col-md-6">
-					<label for="Nombre" class="col-form-label">Nombre(s):</label> <input
+					<label for="nombre" class="col-form-label">Nombre(s):</label> <input
 						type="text" class="form-control" id="Nombre"
 						placeholder="Nombre(s)" th:field="*{nombre}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 				</div>
-				
+
 				<div class="col-md-6">
 					<label for="Apellido" class="col-form-label">Apellido(s):</label> <input
 						type="text" class="form-control" id="Apellido"
 						placeholder="Apellido(s)" th:field="*{apellidos}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></div>
 				</div>
-					
+
 				<div class="col-md-2">
 					<label for="Edad" class="col-form-label">Edad:</label> <input
 						type="number" class="form-control" id="Edad" placeholder="Edad"
 						th:field="*{edad}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}"></div>
 				</div>
-					
+
 				<div class="col-md-4">
 					<label for="Fechan" class="col-form-label">Fecha de
 						nacimiento</label> <input type="date" class="form-control" id="Fechan"
 						placeholder="Fecha de nacimiento" th:field="*{fecha_nacimiento}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('fecha_nacimiento')}" th:errors="*{fecha_nacimiento}"></div>
 				</div>
 				<div class="col-md-6">
 					<label for="Direccion" class="col-form-label">Direccion</label> <input
 						type="text" class="form-control" id="Direccion"
 						placeholder="Direccion" th:field="*{direccion}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
 				</div>
-				
+
 				<div class="col-md-6">
 					<label for="Telefono" class="col-form-label">Telefono:</label> <input
 						type="tel" class="form-control" id="Telefono"
 						placeholder="Telefono" th:field="*{telefono}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
 				</div>
-				
+
 				<div class="col-md-6">
 					<label for="Pais" class="col-form-label">Pais:</label> <input
 						type="text" class="form-control" id="Pais" placeholder="Pais"
 						th:field="*{pais}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
 				</div>
-				
+
 				<div class="col-md-6">
 					<label for="dxMedico" class="col-form-label">DX Medico:</label> <input
-						type="text" class="form-control" id="dxMedico" placeholder="DX 	Medico"
-						th:field="*{dxMedico}">
+						type="text" class="form-control" id="dxMedico"
+						placeholder="DX 	Medico" th:field="*{dxMedico}">
+						<div class="alert-danger" th:if="${#fields.hasErrors('dxMedico')}" th:errors="*{dxMedico}"></div>
 				</div>
-				
+
 				<div class="col-md-2">
 					<label for="Cuidador" id="Cuidador" class="col-form-label">Requiere
-						cuidador:</label>
-					<select id="items" class="form-select" th:field="*{requiere_cuidador}">
-						<option value=" - "> - </option>
+						cuidador:</label> <select id="items" class="form-select"
+						th:field="*{requiere_cuidador}">
+						<option value=" - ">-</option>
 						<option value="Si">Si</option>
 						<option value="No">No</option>
 					</select>
@@ -174,18 +184,21 @@
 				<div class="col-md-4">
 					<label for="Relacion_paciente" class="col-form-label">Relacion
 						con el paciente:</label> <input type="text" class="form-control"
-						id="Relacion_paciente" name="Relacion_paciente" placeholder="Relacion con el paciente"
-						th:field="*{relacion_paciente}" value="Ninguna" >
+						id="Relacion_paciente" name="Relacion_paciente"
+						placeholder="Relacion con el paciente"
+						th:field="*{relacion_paciente}" value="Ninguna">
+						<div class="alert-danger" th:if="${#fields.hasErrors('relacion_paciente')}" th:errors="*{relacion_paciente}"></div>
 				</div>
 				<div class="col-md-6">
 					<label for="Relacion_paciente" class="col-form-label">Nombre
 						del Cuidador o Representante: </label> <input type="text"
 						class="form-control" id="Nombre_paciente"
-						placeholder="Nombre del cuidador" th:field="*{nombre_Cuidador}" value="Ninguna" >
+						placeholder="Nombre del cuidador" th:field="*{nombre_Cuidador}"
+						value="Ninguna">
+						<div class="alert-danger" th:if="${#fields.hasErrors('nombre_Cuidador')}" th:errors="*{nombre_Cuidador}"></div>
 				</div>
 
-				<button type="button"
-					class="btn collapsed border-success mt-3"
+				<button type="button" class="btn collapsed border-success mt-3"
 					data-bs-toggle="collapse"
 					data-bs-target="#getting-started-collapse" aria-expanded="false"
 					aria-current="true">Estado de salud</button>
@@ -197,6 +210,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{tiempoEnfermo}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('tiempoEnfermo')}" th:errors="*{tiempoEnfermo}"></div>
 							<datalist id="listamodelos">
 								<option value="De 0 a 6 meses">
 								<option value="De 7 meses a 2 años">
@@ -210,6 +224,7 @@
 								list="Aparecioenfermedad" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{cambioEnfermedad}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('cambioEnfermedad')}" th:errors="*{cambioEnfermedad}"></div>
 							<datalist id="Aparecioenfermedad">
 								<option value="Actividad fisica">
 								<option value="Independencia">
@@ -226,6 +241,7 @@
 							aria-label="Default select example"
 							placeholder="Digita o elige una opcion"
 							th:field="*{conocimientoEstadoSalud}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('conocimientoEstadoSalud')}" th:errors="*{conocimientoEstadoSalud}"></div>
 						<datalist id="estadodesalud">
 							<option value="Lesiones de la piel">
 							<option value="Lesiones en los pies">
@@ -238,9 +254,8 @@
 						</datalist>
 					</div>
 				</div>
-				
-				<button type="button"
-					class="btn collapsed border-success gap-3"
+
+				<button type="button" class="btn collapsed border-success gap-3"
 					data-bs-toggle="collapse" data-bs-target="#ayout"
 					aria-expanded="false">Factores del sistema familiar</button>
 				<div class="collapse" id="ayout">
@@ -251,6 +266,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{conQuienVive}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('conQuienVive')}" th:errors="*{conQuienVive}"></div>
 							<datalist id="conquienvive">
 								<option value="Familia">
 								<option value="Solo">
@@ -264,6 +280,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{relacionesFamiliares}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('relacionesFamiliares')}" th:errors="*{relacionesFamiliares}"></div>
 							<datalist id="relacionfamilia">
 								<option value="Buena">
 								<option value="Regular">
@@ -272,24 +289,23 @@
 							</datalist>
 						</div>
 					</div>
-					
-						<div class="col-md-6">
-							<label>Tipo de familia:</label> <input name="busquedamodelos"
-								list="tipofamilia" class="form-control"
-								aria-label="Default select example"
-								placeholder="Digita o elige una opcion"
-								th:field="*{tipoFamilia}">
-							<datalist id="tipofamilia">
-								<option value="Nuclear Completa">
-								<option value="Nuclear incompleta">
-								<option value="Extensa">
-								<option value="Otra">
-							</datalist>
-						</div>
-					
+
+					<div class="col-md-6">
+						<label>Tipo de familia:</label> <input name="busquedamodelos"
+							list="tipofamilia" class="form-control"
+							aria-label="Default select example"
+							placeholder="Digita o elige una opcion" th:field="*{tipoFamilia}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('tipoFamilia')}" th:errors="*{tipoFamilia}"></div>
+						<datalist id="tipofamilia">
+							<option value="Nuclear Completa">
+							<option value="Nuclear incompleta">
+							<option value="Extensa">
+							<option value="Otra">
+						</datalist>
+					</div>
+
 				</div>
-				<button type="button"
-					class="btn collapsed border-success gap-3"
+				<button type="button" class="btn collapsed border-success gap-3"
 					data-bs-toggle="collapse" data-bs-target="#forms-collapse"
 					aria-expanded="false">Factores ambientales</button>
 				<div class="collapse" id="forms-collapse">
@@ -300,6 +316,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{comunaCorregimiento}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('comunaCorregimiento')}" th:errors="*{comunaCorregimiento}"></div>
 							<datalist id="comuna">
 								<option value="Comuna 1 Centro San Miguel">
 								<option value="Comuna 1 Centro Centro">
@@ -329,7 +346,7 @@
 								<option value="Comuna 2 Sur Santa Monica">
 								<option value="Comuna 2 Sur Parques Bocas Del Bogota">
 								<option value="Comuna 2 Sur Portal De Santa Monica">
-								<option value="Comuna 2 Sur Acacias">								
+								<option value="Comuna 2 Sur Acacias">
 								<option value="Comuna 3 Occidente Arrayanes">
 								<option value="Comuna 3 Occidente Esperanza">
 								<option value="Comuna 3 Occidente Quinto Patio">
@@ -448,6 +465,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{relacionComuna}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('relacionComuna')}" th:errors="*{relacionComuna}"></div>
 							<datalist id="comunatranquila">
 								<option value="Si">
 								<option value="No">
@@ -459,7 +477,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{contaminacionAmbiental}">
-
+								<div class="alert-danger" th:if="${#fields.hasErrors('contaminacionAmbiental')}" th:errors="*{contaminacionAmbiental}"></div>
 							<datalist id="contaminacionambi">
 								<option value="Si">
 								<option value="No">
@@ -470,7 +488,7 @@
 								list="viasacceso" class="form-control"
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion" th:field="*{viasAcceso}">
-
+								<div class="alert-danger" th:if="${#fields.hasErrors('viasAcceso')}" th:errors="*{viasAcceso}"></div>
 							<datalist id="viasacceso">
 								<option value="Si">
 								<option value="No">
@@ -482,6 +500,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{servicioTransporte}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('servicioTransporte')}" th:errors="*{servicioTransporte}"></div>
 							<datalist id="transporte">
 								<option value="Si">
 								<option value="No">
@@ -493,6 +512,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{zonasVerdes}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('zonasVerdes')}" th:errors="*{zonasVerdes}"></div>
 							<datalist id="zonaverde">
 								<option value="Si">
 								<option value="No">
@@ -504,6 +524,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{zonasPublicas}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('zonasPublicas')}" th:errors="*{zonasPublicas}"></div>
 							<datalist id="zonapublica">
 								<option value="Si">
 								<option value="No">
@@ -515,6 +536,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{barrerasArquitectonicas}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('barrerasArquitectonicas')}" th:errors="*{barrerasArquitectonicas}"></div>
 							<datalist id="barrerasarqui">
 								<option value="Si">
 								<option value="No">
@@ -522,34 +544,38 @@
 						</div>
 					</div>
 				</div>
-				<button type="button"
-					class="btn collapsed border-success gap-3"
+				<button type="button" class="btn collapsed border-success gap-3"
 					data-bs-toggle="collapse" data-bs-target="#components-collapse"
 					aria-expanded="false">Recursos disponibles y adecuados</button>
 				<div class="collapse" id="components-collapse">
 					<div class="row">
 						<div class="col-md-6">
-							<label>Fuentes de ingreso:</label> <input name="busquedamodelos" list="fuentes"
-								class="form-control" aria-label="Default select example"
-								placeholder="Digita o elige una opcion" th:field="*{fuenteIngresos}">
-								<datalist id="fuentes">
-									<option value="Empleo">
-									<option value="Pensión">
-									<option value="Familia">
-									<option value="Subsidio">
-									<option value="Otro">
+							<label>Fuentes de ingreso:</label> <input name="busquedamodelos"
+								list="fuentes" class="form-control"
+								aria-label="Default select example"
+								placeholder="Digita o elige una opcion"
+								th:field="*{fuenteIngresos}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('fuenteIngresos')}" th:errors="*{fuenteIngresos}"></div>
+							<datalist id="fuentes">
+								<option value="Empleo">
+								<option value="Pensión">
+								<option value="Familia">
+								<option value="Subsidio">
+								<option value="Otro">
 							</datalist>
 						</div>
 						<div class="col-md-6">
 							<label>Eps:</label> <input name="busquedamodelos" list="Eps"
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion" th:field="*{eps}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('eps')}" th:errors="*{eps}"></div>
 						</div>
 						<div class="col-md-6">
 							<label>Estrato socioeconomico: </label> <input
 								name="busquedamodelos" list="estra" class="form-control"
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion" th:field="*{estrato}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('estrato')}" th:errors="*{estrato}"></div>
 							<datalist id="estra">
 								<option value="1">
 								<option value="2">
@@ -560,27 +586,27 @@
 							</datalist>
 						</div>
 						<div class="col-md-6">
-						<label>Ingresos economicos mensuales:</label> <input
-							name="busquedamodelos" list="salariomen" class="form-control"
-							aria-label="Default select example"
-							placeholder="Digita o elige una opcion"
-							th:field="*{ingresosEconomicos}">
-						<datalist id="salariomen">
-							<option value="Menos de 1 SMLV">
-							<option value="1 SMLV">
-							<option value="Mas 2 SMLV">
-							<option value="No recibe">
-							<option value="Pensionado">
-							<option value="Ayuda de familiares">
-							<option value="Subsidio de gobierno">
-						</datalist>
+							<label>Ingresos economicos mensuales:</label> <input
+								name="busquedamodelos" list="salariomen" class="form-control"
+								aria-label="Default select example"
+								placeholder="Digita o elige una opcion"
+								th:field="*{ingresosEconomicos}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('ingresosEconomicos')}" th:errors="*{ingresosEconomicos}"></div>
+							<datalist id="salariomen">
+								<option value="Menos de 1 SMLV">
+								<option value="1 SMLV">
+								<option value="Mas 2 SMLV">
+								<option value="No recibe">
+								<option value="Pensionado">
+								<option value="Ayuda de familiares">
+								<option value="Subsidio de gobierno">
+							</datalist>
+						</div>
 					</div>
-					</div>
-					
+
 				</div>
-					
-				<button type="button"
-					class="btn collapsed border-success gap-3"
+
+				<button type="button" class="btn collapsed border-success gap-3"
 					data-bs-toggle="collapse" data-bs-target="#content-collapse"
 					aria-expanded="false">Patron de vida</button>
 				<div class="collapse" id="content-collapse">
@@ -591,6 +617,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{ocupacionActual}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('ocupacionActual')}" th:errors="*{ocupacionActual}"></div>
 							<datalist id="ocupacionactual">
 								<option value="Hogar">
 								<option value="Empleo">
@@ -604,6 +631,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{ocupacionAnterior}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('ocupacionAnterior')}" th:errors="*{ocupacionAnterior}"></div>
 							<datalist id="ocupacionanterior">
 								<option value="Hogar">
 								<option value="Empleo">
@@ -612,26 +640,26 @@
 							</datalist>
 						</div>
 					</div>
-					
-						<div class="col-md-6">
-							<label>Actividades que realiza diariamente:</label> <input
-								name="busquedamodelos" list="actividaddiaria"
-								class="form-control" aria-label="Default select example"
-								placeholder="Digita o elige una opcion"
-								th:field="*{actividadesDiarias}">
-							<datalist id="actividaddiaria">
-								<option value="AVD basica">
-								<option value="Actividad fisica">
-								<option value="Actvidad mental">
-								<option value="Actvidad social">
-								<option value="Actvidad laboral">
-								<option value="Actvidad de tiempo libre u ocio">
-							</datalist>
-						</div>
-					
+
+					<div class="col-md-6">
+						<label>Actividades que realiza diariamente:</label> <input
+							name="busquedamodelos" list="actividaddiaria"
+							class="form-control" aria-label="Default select example"
+							placeholder="Digita o elige una opcion"
+							th:field="*{actividadesDiarias}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('actividadesDiarias')}" th:errors="*{actividadesDiarias}"></div>
+						<datalist id="actividaddiaria">
+							<option value="AVD basica">
+							<option value="Actividad fisica">
+							<option value="Actvidad mental">
+							<option value="Actvidad social">
+							<option value="Actvidad laboral">
+							<option value="Actvidad de tiempo libre u ocio">
+						</datalist>
+					</div>
+
 				</div>
-				<button type="button"
-					class="btn collapsed border-success gap-3"
+				<button type="button" class="btn collapsed border-success gap-3"
 					data-bs-toggle="collapse" data-bs-target="#customize-collapse"
 					aria-expanded="false">Orientacion sociocultural</button>
 				<div class="collapse" id="customize-collapse">
@@ -642,6 +670,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{nivelEducacion}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('nivelEducacion')}" th:errors="*{nivelEducacion}"></div>
 							<datalist id="educacion">
 								<option value="Primaria incompleta">
 								<option value="Primaria completa">
@@ -660,6 +689,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{medidasAlternativas}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('medidasAlternativas')}" th:errors="*{medidasAlternativas}"></div>
 							<datalist id="Manejosalud">
 								<option value="Medidas caseras">
 								<option value="Tratamiento homeopatico">
@@ -674,6 +704,7 @@
 							name="busquedamodelos" list="reli" class="form-control"
 							aria-label="Default select example"
 							placeholder="Digita o elige una opcion" th:field="*{religion}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('religion')}" th:errors="*{religion}"></div>
 						<datalist id="reli">
 							<option value="Catolico">
 							<option value="Evangelico">
@@ -681,10 +712,9 @@
 						</datalist>
 					</div>
 				</div>
-				
-				
-				<button type="button"
-					class="btn collapsed border-success gap-3"
+
+
+				<button type="button" class="btn collapsed border-success gap-3"
 					data-bs-toggle="collapse" data-bs-target="#helpers-collapse"
 					aria-expanded="false">Requisitos de desarrollo</button>
 				<div class="collapse" id="helpers-collapse">
@@ -696,6 +726,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{efectosNegativos}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('efectosNegativos')}" th:errors="*{efectosNegativos}"></div>
 							<datalist id="efectosnegativos">
 								<option value="Privación educacional">
 								<option value="Problemas de adaptación socia">
@@ -716,6 +747,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{requisitosVitales}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('requisitosVitales')}" th:errors="*{requisitosVitales}"></div>
 							<datalist id="promueveefectos">
 								<option value="Vida intrauterina">
 								<option value="Vida neonatal, parto a termino o prematuro">
@@ -729,8 +761,7 @@
 						</div>
 					</div>
 				</div>
-				<button type="button"
-					class="btn collapsed border-success gap-3"
+				<button type="button" class="btn collapsed border-success gap-3"
 					data-bs-toggle="collapse" data-bs-target="#utilities-collapse"
 					aria-expanded="false">Requisitos de autocuidado en la
 					desviacion de la salud</button>
@@ -742,6 +773,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{controlesMedicos}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('controlesMedicos')}" th:errors="*{controlesMedicos}"></div>
 						</div>
 						<div class="col-md-6">
 							<label>Conoce los efectos que produce la enfermedad:</label> <input
@@ -749,6 +781,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{efectosEnfermedad}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('efectosEnfermedad')}" th:errors="*{efectosEnfermedad}"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -758,6 +791,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{tratamientoFarmacologico}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('tratamientoFarmacologico')}" th:errors="*{tratamientoFarmacologico}"></div>
 							<datalist id="Tratamientofarma">
 								<option value="IECA">
 								<option value="Bloqueadores de canales de Ca">
@@ -781,6 +815,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{recibioInformacion}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('recibioInformacion')}" th:errors="*{recibioInformacion}"></div>
 							<datalist id="información">
 								<option value="Medico">
 								<option value="Enfermero(a)">
@@ -796,6 +831,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{efectosIndeseados}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('efectosIndeseados')}" th:errors="*{efectosIndeseados}"></div>
 						</div>
 						<div class="col-md-6">
 							<label>La enfermedad y sus consecuencias han cambiado su
@@ -803,6 +839,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{enfermedadEstiloVida}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('enfermedadEstiloVida')}" th:errors="*{enfermedadEstiloVida}"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -813,6 +850,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{autoconcepto}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('autoconcepto')}" th:errors="*{autoconcepto}"></div>
 							<datalist id="consecuenciaenfermedad">
 								<option value="Si">
 								<option value="No">
@@ -825,6 +863,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{recibeApoyo}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('recibeApoyo')}" th:errors="*{recibeApoyo}"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -834,6 +873,7 @@
 								class="form-control" aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{aprendidoVivir}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('aprendidoVivir')}" th:errors="*{aprendidoVivir}"></div>
 						</div>
 					</div>
 				</div>
@@ -848,6 +888,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{requisitoAutocuidado}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('requisitoAutocuidado')}" th:errors="*{requisitoAutocuidado}"></div>
 							<datalist id="Rautocuidado">
 								<option value="Conservacion del aire">
 								<option value="Conservacion del agua">
@@ -867,6 +908,7 @@
 								aria-label="Default select example"
 								placeholder="Digita o elige una opcion"
 								th:field="*{metaAutocuidado}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('metaAutocuidado')}" th:errors="*{metaAutocuidado}"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -878,6 +920,7 @@
 										aria-label="Default select example"
 										placeholder="Digita o elige una opcion"
 										th:field="*{diagnosticoNANDA}">
+										<div class="alert-danger" th:if="${#fields.hasErrors('diagnosticoNANDA')}" th:errors="*{diagnosticoNANDA}"></div>
 								</div>
 							</div>
 							<div id="contenedor"></div>
@@ -1179,6 +1222,7 @@
 										class="form-control" aria-label="Default select example"
 										placeholder="Digita o elige una opcion"
 										th:field="*{intervencionesEnfermeria}">
+										<div class="alert-danger" th:if="${#fields.hasErrors('intervencionesEnfermeria')}" th:errors="*{intervencionesEnfermeria}"></div>
 								</div>
 							</div>
 							<div id="contenedor2"></div>
@@ -2118,37 +2162,76 @@
 						</div>
 						<div class="input-group-text col-md-12 mt-3">
 							<label>Actividades: </label>
-							<textarea name="prueba" id="prueba" rows="5" required
+							<textarea name="prueba" id="prueba" rows="5" 
 								class="form-control" aria-label="With textarea"
 								th:field="*{abiertoActividades}">
 							</textarea>
+							<div class="alert-danger" th:if="${#fields.hasErrors('abiertoActividades')}" th:errors="*{abiertoActividades}"></div>
 							<div class="text-right">
 								<span class="valid-text" id="pruebaCount">255 Caracteres
 									restantes</span>
 							</div>
-							
-							<script type="text/javascript">
-							$(document).ready(function() {
-							    var limit = 255;
-							    $("#prueba").keyup(function(event) {
-							        var value = limit - $(this).val().length;
 
-							        if (value <= 0) {
-							            $('#prueba').removeClass('is-valid');
-							            $('#prueba').addClass('is-invalid');
-							            $('#pruebaCount').html(value);
-							            $('#pruebaCount').removeClass('valid-text');
-							            $('#pruebaCount').addClass('invalid-text');
-							        } else if (value > 0) {
-							            $('#prueba').removeClass('is-invalid');
-							            $('#prueba').addClass('is-valid');
-							            $('#pruebaCount').html(value);
-							            $('#pruebaCount').removeClass('invalid-text');
-							            $('#pruebaCount').addClass('valid-text');
-							        }
-							    });
-			
-								});
+							<script type="text/javascript">
+								$(document)
+										.ready(
+												function() {
+													var limit = 255;
+													$("#prueba")
+															.keyup(
+																	function(
+																			event) {
+																		var value = limit
+																				- $(
+																						this)
+																						.val().length;
+
+																		if (value <= 0) {
+																			$(
+																					'#prueba')
+																					.removeClass(
+																							'is-valid');
+																			$(
+																					'#prueba')
+																					.addClass(
+																							'is-invalid');
+																			$(
+																					'#pruebaCount')
+																					.html(
+																							value);
+																			$(
+																					'#pruebaCount')
+																					.removeClass(
+																							'valid-text');
+																			$(
+																					'#pruebaCount')
+																					.addClass(
+																							'invalid-text');
+																		} else if (value > 0) {
+																			$(
+																					'#prueba')
+																					.removeClass(
+																							'is-invalid');
+																			$(
+																					'#prueba')
+																					.addClass(
+																							'is-valid');
+																			$(
+																					'#pruebaCount')
+																					.html(
+																							value);
+																			$(
+																					'#pruebaCount')
+																					.removeClass(
+																							'invalid-text');
+																			$(
+																					'#pruebaCount')
+																					.addClass(
+																							'valid-text');
+																		}
+																	});
+
+												});
 							</script>
 						</div>
 						<div id="Resultado">
@@ -2160,6 +2243,7 @@
 											class="form-control " aria-label="Default select example"
 											placeholder="Digita o elige una opcion"
 											th:field="*{diagnosticoNOC}">
+											<div class="alert-danger" th:if="${#fields.hasErrors('diagnosticoNOC')}" th:errors="*{diagnosticoNOC}"></div>
 										<datalist id="Diagnostico1">
 											<option value="[0001] resistencia">
 											<option value="[0002] conservación de la energía">
@@ -2803,6 +2887,7 @@
 											aria-label="Default select example"
 											placeholder="Digita o elige una opcion"
 											th:field="*{escalaValoracion}">
+											<div class="alert-danger" th:if="${#fields.hasErrors('escalaValoracion')}" th:errors="*{escalaValoracion}"></div>
 										<datalist id="escala">
 											<option value="1. Gravemente Comprometido">
 											<option value="2. Sustancialmente Comprometido">
@@ -2811,99 +2896,150 @@
 											<option value="5. No Comprometido">
 										</datalist>
 									</div>
-								
-								<div class="col-md-4 mt-3">
-									<label>Puntuacion Inicial: </label><input
-										name="busquedamodelos" class="form-control"
-										aria-label="Default select example"
-										placeholder="Digita la puntuacion inicial"
-										th:field="*{puntuacionInicial}">
-								</div>
-								<div class="col-md-4 mt-3">
-									<label>Puntuacion Deseada: </label><input
-										name="busquedamodelos" class="form-control"
-										aria-label="Default select example"
-										placeholder="Digita la puntuacion inicial"
-										th:field="*{puntuacionDeseada}">
-								</div>
-								<div class="col-md-4 mt-3">
-									<label>Puntuacion Final: </label><input name="busquedamodelos"
-										class="form-control" aria-label="Default select example"
-										placeholder="Digita la puntuacion inicial"
-										th:field="*{puntuacionFinal}">
-								</div>
+
+									<div class="col-md-4 mt-3">
+										<label for="puntuacionInicial">Puntuacion Inicial: </label><input
+											name="busquedamodelos" class="form-control"
+											aria-label="Default select example"
+											placeholder="Digita la puntuacion inicial"
+											th:field="*{puntuacionInicial}">
+											<div class="alert-danger" th:if="${#fields.hasErrors('puntuacionInicial')}" th:errors="*{puntuacionInicial}">Nombre Error</div>
+									</div>
+									<div class="col-md-4 mt-3">
+										<label for="puntuacionInicial">Puntuacion Deseada: </label><input
+											name="busquedamodelos" class="form-control"
+											aria-label="Default select example"
+											placeholder="Digita la puntuacion inicial"
+											th:field="*{puntuacionDeseada}">
+											<div class="alert-danger" th:if="${#fields.hasErrors('puntuacionDeseada')}" th:errors="*{puntuacionDeseada}">Nombre Error</div>
+									</div>
+									<div class="col-md-4 mt-3">
+										<label>Puntuacion Final: </label><input name="busquedamodelos"
+											class="form-control" aria-label="Default select example"
+											placeholder="Digita la puntuacion inicial"
+											th:field="*{puntuacionFinal}">
+											<div class="alert-danger" th:if="${#fields.hasErrors('puntuacionFinal')}" th:errors="*{puntuacionFinal}">Nombre Error</div>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div id="contenedor1"></div>
-						<button type="button" class="btn btn-primary mt-1"
-											id="agregar" onclick="addResultado();">Agregar Otro
-											Resultado Esperado</button>
+						<button type="button" class="btn btn-primary mt-1" id="agregar"
+							onclick="addResultado();">Agregar Otro Resultado
+							Esperado</button>
 						<div class="input-group-text col-md-12 mt-3">
-							<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-							<label>Indicadores: </label>
-							<textarea name="txaMessage" id="txaMessage" rows="5" required class="form-control" aria-label="With textarea" th:field="*{abiertoIndicadores}" >
+							<script
+								src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+							<label for="abiertoIndicadores">Indicadores: </label>
+							<textarea name="txaMessage" id="txaMessage" rows="5" 
+								class="form-control" aria-label="With textarea"
+								th:field="*{abiertoIndicadores}">
 							</textarea>
-							<div class="text-right"><span class="valid-text pt-3" id="txaCount">255 Caracteres restantes</span></div>
+							<div class="alert-danger" th:if="${#fields.hasErrors('abiertoIndicadores')}" th:errors="*{abiertoIndicadores}"></div>
+							<div class="text-right">
+								<span class="valid-text pt-3" id="txaCount">255
+									Caracteres restantes</span>
+							</div>
 							<script type="text/javascript">
-							$(document).ready(function() {
-							    var limit = 255;
-							    $("#txaMessage").keyup(function(event) {
-							        var value = limit - $(this).val().length;
+								$(document)
+										.ready(
+												function() {
+													var limit = 255;
+													$("#txaMessage")
+															.keyup(
+																	function(
+																			event) {
+																		var value = limit
+																				- $(
+																						this)
+																						.val().length;
 
-							        if (value <= 0) {
-							            $('#txaMessage').removeClass('is-valid');
-							            $('#txaMessage').addClass('is-invalid');
-							            $('#txaCount').html(value);
-							            $('#txaCount').removeClass('valid-text');
-							            $('#txaCount').addClass('invalid-text');
-							        } else if (value > 0) {
-							            $('#txaMessage').removeClass('is-invalid');
-							            $('#txaMessage').addClass('is-valid');
-							            $('#txaCount').html(value);
-							            $('#txaCount').removeClass('invalid-text');
-							            $('#txaCount').addClass('valid-text');
-							        }
-							    });
-							});
+																		if (value <= 0) {
+																			$(
+																					'#txaMessage')
+																					.removeClass(
+																							'is-valid');
+																			$(
+																					'#txaMessage')
+																					.addClass(
+																							'is-invalid');
+																			$(
+																					'#txaCount')
+																					.html(
+																							value);
+																			$(
+																					'#txaCount')
+																					.removeClass(
+																							'valid-text');
+																			$(
+																					'#txaCount')
+																					.addClass(
+																							'invalid-text');
+																		} else if (value > 0) {
+																			$(
+																					'#txaMessage')
+																					.removeClass(
+																							'is-invalid');
+																			$(
+																					'#txaMessage')
+																					.addClass(
+																							'is-valid');
+																			$(
+																					'#txaCount')
+																					.html(
+																							value);
+																			$(
+																					'#txaCount')
+																					.removeClass(
+																							'invalid-text');
+																			$(
+																					'#txaCount')
+																					.addClass(
+																							'valid-text');
+																		}
+																	});
+												});
 							</script>
 						</div>
-						</div>
-						<div class="col-md-12">
-								<label>Evaluacion:</label> <input name="busquedamodelos"
-									list="Evaluacion" class="form-control"
-									aria-label="Default select example"
-									placeholder="Digita o elige una opcion"
-									th:field="*{evaluacion}">
-						</div>
 					</div>
+					<div class="col-md-12">
+						<label>Evaluacion:</label> <input name="busquedamodelos"
+							list="Evaluacion" class="form-control"
+							aria-label="Default select example"
+							placeholder="Digita o elige una opcion" th:field="*{evaluacion}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('evaluacion')}" th:errors="*{evaluacion}">Nombre Error</div>
+					</div>
+				</div>
 				<div class="col-sm-3 row mx-auto mt-3 ">
 					<input type="submit" class="btn btn-outline-success"
-						value="Guardar">
+						value="Guardar" id="enviar">
 				</div>
 			</form>
 		</div>
 	</div>
 	<script type="text/javascript">
-		function addDiagnostico(){
-			$('#Diag .clonar').clone().find('input').val('').end().appendTo('#contenedor');
+		function addDiagnostico() {
+			$('#Diag .clonar').clone().find('input').val('').end().appendTo(
+					'#contenedor');
 		}
-		function addResultado(){
-			$('#Resultado .clonarResultado').clone().find('input').val('').end().appendTo('#contenedor1');
+		function addResultado() {
+			$('#Resultado .clonarResultado').clone().find('input').val('')
+					.end().appendTo('#contenedor1');
 		}
-		function addInter(){
-			$('#Inter .clonarInter').clone().find('input').val('').end().appendTo('#contenedor2');
+		function addInter() {
+			$('#Inter .clonarInter').clone().find('input').val('').end()
+					.appendTo('#contenedor2');
 		}
 		$(document).ready(function() {
-		    $('#items').change(function(e) {
-		        if ($(this).val() === "No") {
-		            $('#Relacion_paciente').prop("disabled", true);
-		            $('#Nombre_paciente').prop("disabled", true);
-		        } else {
-		            $('#Relacion_paciente').prop("disabled", false);
-		            $('#Nombre_paciente').prop("disabled", false);
-		        }
-		    })
+			$('#items').change(function(e) {
+				if ($(this).val() === "No") {
+					$('#Relacion_paciente').prop("disabled", true);
+					$('#Nombre_paciente').prop("disabled", true);
+				} else {
+					$('#Relacion_paciente').prop("disabled", false);
+					$('#Nombre_paciente').prop("disabled", false);
+				}
+			})
 		});
 	</script>
 </body>

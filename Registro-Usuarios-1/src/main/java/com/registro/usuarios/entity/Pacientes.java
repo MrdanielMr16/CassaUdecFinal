@@ -32,9 +32,10 @@ public class Pacientes implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "fecha_valoracion")
+	@Column(name = "fecha_valoracion", nullable = false)
 	private Date fecha_valoracion;
 	
 	@NotEmpty
@@ -55,9 +56,10 @@ public class Pacientes implements Serializable {
 	@NotEmpty
 	private String dxMedico;
 	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "fecha_nacimiento")
+	@Column(name = "fecha_nacimiento", nullable = false)
 	private Date fecha_nacimiento;
 	
 	@NotEmpty
@@ -69,7 +71,7 @@ public class Pacientes implements Serializable {
 	
 	private String relacion_paciente;
 	
-	@NonNull
+	@NotNull
 	private long telefono;
 	
 	@NotEmpty

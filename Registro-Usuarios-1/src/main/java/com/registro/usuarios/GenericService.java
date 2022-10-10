@@ -8,6 +8,7 @@ package com.registro.usuarios;
 
 import org.springframework.data.repository.CrudRepository;
 
+
 import java.util.Optional;
 
 /**
@@ -72,5 +73,7 @@ public class GenericService<T, ID> {
     public void deleteAll() {
         repository.deleteAll();
     }
+
+	
 
 }

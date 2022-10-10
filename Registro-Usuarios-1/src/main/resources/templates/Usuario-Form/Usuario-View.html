@@ -3,6 +3,7 @@
 
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cassa Udec</title>
 
 <!--JQUERY-->
@@ -27,7 +28,9 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
 <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+<link
+	href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+	rel="stylesheet">
 
 <!-- Nuestro css-->
 <link rel="stylesheet" type="text/css"
@@ -38,19 +41,19 @@
 	href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript">
-	    $(document).ready(function() {
-	        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
-	        $('#userList').DataTable();
-	    });
-	</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+		$('#userList').DataTable();
+	});
+</script>
 
 
 </head>
 <body>
 	<div class="contenedor">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<img src="static/img/Logoudec.png" th:src="@{img/Logoudec.png}"
+			<img src="/static/img/Logoudec.png" th:src="@{/img/Logoudec.png}"
 				width="150" alt="">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			</div>
@@ -80,8 +83,7 @@
 	<div class="container-fluid">
 		<div class="row flex-nowrap">
 			<div class="col-auto col-md-2 col-xl-2 px-sm-0 px-0 bg-light">
-				<div
-					class="flex-column align-items-center px-0 pt-0 text-white ">
+				<div class="flex-column align-items-center px-0 pt-0 text-white ">
 					<ul
 						class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start "
 						id="menu">
@@ -90,38 +92,37 @@
 								class="icon ion-md-home mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Inicio</span>
 						</a></li>
-						<li><a href="#" th:href="@{/RPacientes}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-person mr-2"></i> <span
+						<li><a href="#" th:href="@{/RPacientes}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-person mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Valoracion Pacientes</span>
 						</a></li>
-						<li><a href="#" th:href="@{/ListarPacientes}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-list mr-2"></i> <span
+						<li><a href="#" th:href="@{/ListarPacientes}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-list mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Lista de Pacientes</span>
 						</a></li>
-						<li><a href="#" th:href="@{/Admin/Cartillas}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-bookmarks"></i> <span
+						<li><a href="#" th:href="@{/Admin/Cartillas}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-bookmarks"></i> <span
 								class="ms-1 d-none d-sm-inline">Crear Cartillas</span>
 						</a></li>
-						<li><a href="#" th:href="@{/Chat}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-chatboxes mr-2"></i> <span
-								class="ms-1 d-none d-sm-inline">Chat</span>
-						</a></li>
-						<li><a href="#" th:href="@{/Admin/Eventos}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-calendar mr-2"></i> <span
+						<li><a href="#" th:href="@{/Admin/Eventos}"
+							class="d-block text-success p-3 border-0"> <i
+								class="icon ion-md-calendar mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Eventos</span>
-						</a></li>
-						<li><a href="#"  class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-paper"></i> <span
-								class="ms-1 d-none d-sm-inline">Foro</span>
 						</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-sm-8 row mx-auto">
-				<div class="mx-auto col-sm-12 main-section" id="myTab" role="tablist">
-
+				<div class="mx-auto col-sm-12 main-section" id="myTab"
+					role="tablist">
+					<div class="alert alert-success"
+						th:if="${ComentarioGuardado!=null}"
+						th:text="${ComentarioGuardado}"></div>
 					<div class="tab-content" id="myTabContent">
-						
+
 						<div class="tab-pane fade show" th:classappend=" ${listTab}"
 							id="list" role="tabpanel" aria-labelledby="list-tab">
 							<div class="card">
@@ -136,26 +137,68 @@
 						</div>
 						<div class="tab-pane fade show" th:classappend=" ${formTab}"
 							id="form" role="tabpanel" aria-labelledby="form-tab">
-							<div class="card">
-								<div class="card-header">
-									<h4>Informacion del usuario</h4>
-								</div>
-								<div class="card-body">
-									<div th:include="Usuario-Form/Form-Usuario.html"
-										th:remove="tag"></div>
-								</div>
+							<div class="card-header">
+								<h4>Informacion del usuario</h4>
+							</div>
+							<div class="card-body">
+								<div th:include="Usuario-Form/Form-Usuario.html" th:remove="tag"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div th:if="${editMode}" th:include="Usuario-Form/change-password.html"
-					th:remove="tag"></div>
-				<div th:include="Usuario-Form/confirm-delete-dialog.html"
-					th:remove="tag"></div>
 			</div>
+			<div th:if="${editMode}"
+				th:include="Usuario-Form/change-password.html" th:remove="tag"></div>
+			<div th:include="Usuario-Form/confirm-delete-dialog.html"
+				th:remove="tag"></div>
 		</div>
-		
 	</div>
+	<script type="text/javascript">
+		function mostrarPassword() {
+			var cambio = document.getElementById("txtPassword");
+			if (cambio.type == "password") {
+				cambio.type = "text";
+				$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+			} else {
+				cambio.type = "password";
+				$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+			}
+		}
+		function mostrarPassword2() {
+			var cambio2 = document.getElementById("txtconfirmPassword");
+			if (cambio2.type == "password") {
+				cambio2.type = "text";
+				$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+			} else {
+				cambio2.type = "password";
+				$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+			}
+		}
+
+		$(document).ready(
+				function() {
+					//CheckBox mostrar contraseña
+					$('#ShowPassword').click(
+							function() {
+								$('#Password').attr(
+										'type',
+										$(this).is(':checked') ? 'text'
+												: 'password');
+							});
+				}),
+				function() {
+					//CheckBox mostrar contraseña
+					$('#ShowPassword2').click(
+							function() {
+								$('#Password').attr(
+										'type',
+										$(this).is(':checked') ? 'text'
+												: 'password');
+							});
+				};
+	</script>
+	<script src="/js/RPacientes.js"></script>
+	<!-- Código de instalación Cliengo para Danielfmarin16@gmail.com -->
 	
 </body>
 </html>

@@ -31,6 +31,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		this.repositorio = repositorio;
 	}
 	
+	public Optional<Usuario> getByUsername(String username){
+		return repositorio.findByUsername(username);
+	}
+	
 	@Override
 	public Iterable<Usuario> getAllUsuarios() {
 		return repositorio.findAll();
@@ -101,15 +105,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 					.orElseThrow(() -> new Exception("UsernotFound in ChangePassword."));
 		 
 		 if( !isLoggedUserADMIN() && form.getCurrentPassword().equals(storedUser.getPassword())) {
-				throw new Exception ("AYUDA Password invalido.");
+				throw new Exception ("Contrasena no valida.");
 			}
 			
 			if( usuario.getPassword().equals(form.getNewPassword())) {
-				throw new Exception ("Nuevo password debe ser diferente al password actual.");
+				throw new Exception ("Nuevo contrasena debe ser diferente a su contrasena actual.");
 			}
 			
 			if( !form.getNewPassword().equals(form.getConfirmPassword())) {
-				throw new Exception ("Nuevo Password y Confirm Password no coinciden.");
+				throw new Exception ("Nuevo contrasena y Confirmar contrasena no coinciden.");
 			}
 		String encodePassword = encoder.encode(form.getNewPassword());
 		usuario.setPassword(encodePassword);

@@ -13,6 +13,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,11 +44,16 @@ public class PacientesController {
 	@GetMapping("/RPacientes")
 	public String agregar(Model model) {
 		
-		model.addAttribute("paciente", new Pacientes());
+		model.addAttribute("pacientes", new Pacientes());
 		return "Admin/RPacientes";
 	}
 	@PostMapping("/guardar")
-	public String save(@Valid Pacientes pacientes, Model model) {
+	public String save(@Valid Pacientes pacientes, BindingResult bindingResult, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			return "Admin/RPacientes";
+		}
+		
 		pacientesService.save(pacientes);
 		return "redirect:/ListarPacientes";
 	}
@@ -54,7 +61,7 @@ public class PacientesController {
 	@GetMapping("/editar/{id}")
 	public String editar(@PathVariable int id, Model model) {
 		Optional<Pacientes>paciente=pacientesService.ListarId(id);
-		model.addAttribute("paciente", paciente);
+		model.addAttribute("pacientes", paciente);
 		return "Admin/RPacientes";
 	}
 

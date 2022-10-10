@@ -28,9 +28,10 @@ public class Cartillas {
 	private String nombre_archivo;
 	private Long tamanio;
 	
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "fecha_Subida")
+	@Column(name = "fecha_subida", nullable = false)
 	private Date fecha_Subida;
 	
 	private byte[] contenido;

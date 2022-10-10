@@ -81,17 +81,9 @@
 								<i class="icon ion-md-bookmarks"></i> <span
 								class="ms-1 d-none d-sm-inline">Crear Cartillas</span>
 						</a></li>
-						<li><a href="#" th:href="@{/Chat}" class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-chatboxes mr-2"></i> <span
-								class="ms-1 d-none d-sm-inline">Chat</span>
-						</a></li>
 						<li><a href="#" th:href="@{/Admin/Eventos}" class="d-block text-success p-3 border-0">
 								<i class="icon ion-md-calendar mr-2"></i> <span
 								class="ms-1 d-none d-sm-inline">Eventos</span>
-						</a></li>
-						<li><a href="#"  class="d-block text-success p-3 border-0">
-								<i class="icon ion-md-paper"></i> <span
-								class="ms-1 d-none d-sm-inline">Foro</span>
 						</a></li>
 					</ul>
 				</div>
@@ -101,27 +93,30 @@
 				<div class="row g-3">
 				<p class="text-success text-center fs-1 fw-bold">Registro de Eventos</p>
 					<div class="col-6">
-						<input type="hidden" th:field="*{id}"> <label for="Cedula"
+						<input type="hidden" th:field="*{id}"> <label for="nombre_evento"
 							class="col-form-label">Nombre del evento:</label> <input
 							type="text" class="form-control" id="Cedula"
 							placeholder="Nombre del evento" th:field="*{nombre_evento}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('nombre_evento')}" th:errors="*{nombre_evento}"></div>
 					</div>
 					<div class="col-6">
 						<label for="Descripcion" class="col-form-label">Descripcion
 							del evento:</label> <input type="text" class="form-control"
 							id="Descripcion" placeholder="Descripcion del evento"
 							th:field="*{descripcion_evento}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('descripcion_evento')}" th:errors="*{descripcion_evento}"></div>
 					</div>
 					<div class="col-6">
 						<label for="Nombre" class="col-form-label">Hora:</label> <input
 							type="time" class="form-control" id="Nombre"
 							placeholder="Hora del evento" th:field="*{hora}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}"></div>
 					</div>
-				
 					<div class="col-6">
 						<label for="Apellido" class="col-form-label">Lugar:</label> <input
 							type="text" class="form-control" id="Apellido"
 							placeholder="Lugar del evento" th:field="*{lugar}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('lugar')}" th:errors="*{lugar}"></div>
 					</div>
 					<div class="col-6">
 						<label for="Direccion" class="col-form-label">Fecha:</label> <input
@@ -134,17 +129,14 @@
 							placeholder="Subir archivo" name="file" accept="image/png, image/jpeg" >
 					</div>
 				</div>
-					<div class="text-center">
+					<div class="text-center mt-5">
 						<input type="submit" class="btn btn-outline-success"
 							value="Guardar Evento"></input>
 							<a href="#" th:href="@{/ListarEventos}" type="button"
 							class="btn btn-outline-success">Ver eventos</a>
 					</div>
-					
-			</form>
-			
+			</form>	
 		</div>
 	</div>
 </body>
-
 </html>
